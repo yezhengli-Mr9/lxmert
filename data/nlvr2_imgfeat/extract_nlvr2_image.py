@@ -84,6 +84,7 @@ def generate_tsv(prototxt, weights, image_ids, outfile):
     if len(missing) > 0:
         # caffe.set_mode_gpu()
         # caffe.set_device(0)
+        caffe.set_mode_cpu()
         net = caffe.Net(prototxt, caffe.TEST, weights=weights)
         with open(outfile, 'ab') as tsvfile:
             writer = csv.DictWriter(tsvfile, delimiter='\t', fieldnames=FIELDNAMES)
@@ -186,10 +187,8 @@ if __name__ == '__main__':
     
     print('Called with args:')
     print(args)
-
     if args.cfg_file is not None:
         cfg_from_file(args.cfg_file)
-
     print('Using config:')
     pprint.pprint(cfg)
     assert cfg.TEST.HAS_RPN
