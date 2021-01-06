@@ -82,8 +82,8 @@ def generate_tsv(prototxt, weights, image_ids, outfile):
     else:
         print('missing {:d}/{:d}'.format(len(missing), len(image_ids)))
     if len(missing) > 0:
-        caffe.set_mode_gpu()
-        caffe.set_device(0)
+        # caffe.set_mode_gpu()
+        # caffe.set_device(0)
         net = caffe.Net(prototxt, caffe.TEST, weights=weights)
         with open(outfile, 'ab') as tsvfile:
             writer = csv.DictWriter(tsvfile, delimiter='\t', fieldnames=FIELDNAMES)
@@ -154,8 +154,8 @@ def parse_args():
     Parse input arguments
     """
     parser = argparse.ArgumentParser(description='Generate bbox output from a Fast R-CNN network')
-    parser.add_argument('--gpu', dest='gpu_id', help='GPU id(s) to use',
-                        default='0', type=str)
+    #parser.add_argument('--gpu', dest='gpu_id', help='GPU id(s) to use',
+    #                    default='0', type=str)
     parser.add_argument('--def', dest='prototxt',
                         help='prototxt file defining the network',
                         default=None, type=str)
