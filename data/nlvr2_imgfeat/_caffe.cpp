@@ -87,7 +87,7 @@ char *param_file, int phase) {
 shared_ptr<Net<Dtype> > Net_Init_Load(
 //    string param_file, string pretrained_param_file, int phase) {
 // https://github.com/BVLC/caffe/issues/3220
-char * param_file, string pretrained_param_file, int phase) {
+char * param_file, char * pretrained_param_file, int phase) {
   CheckFile(param_file);
   CheckFile(pretrained_param_file);
 
